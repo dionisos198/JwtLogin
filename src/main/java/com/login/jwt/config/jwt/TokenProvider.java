@@ -1,5 +1,6 @@
 package com.login.jwt.config.jwt;
 
+import com.login.jwt.domain.Role;
 import com.login.jwt.dto.TokenDto;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -85,6 +86,17 @@ public class TokenProvider implements InitializingBean {
         User principal = new User(claims.getSubject(), "", authorities);
 
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
+    }
+
+    public Authentication addRole(String token, Role role){
+        Claims claims=parseData(token);
+        List<SimpleGrantedAuthority> authorities = Arrays
+                .stream(claims.get(AUTHORIZATION_KEY).toString().split(","))
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+        authorities.add(new SimpleGrantedAuthority(role.getName()));
+        User principal=new User(claims.getSubject(),"",authorities);
+        return new UsernamePasswordAuthenticationToken(principal,"",authorities);
     }
 
     // 토큰 유효성 검사

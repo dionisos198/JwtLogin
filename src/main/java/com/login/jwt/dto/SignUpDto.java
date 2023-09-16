@@ -19,4 +19,7 @@ public class SignUpDto {
     @NotBlank(message ="비밀번호를 입력해주세요")
     private String password;
 
+    @NotBlank(message = "권한을 입력해주세요")
+    private Long roleId;
+
 }

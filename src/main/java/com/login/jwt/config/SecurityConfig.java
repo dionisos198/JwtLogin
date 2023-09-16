@@ -42,7 +42,7 @@ public class SecurityConfig {
               .and()
               .authorizeRequests()
               .antMatchers("/auth/**").permitAll()
-              .antMatchers("/normal").access("hasRole('VIP') or hasRole('NORMAL')")
+              .antMatchers("/normal").access("hasRole('NORMAL')")
               .antMatchers("/vip").hasRole("VIP")
               .anyRequest().authenticated()
               .and()
