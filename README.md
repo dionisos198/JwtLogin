@@ -1,5 +1,5 @@
 # JwtLogin
-JWT를 사용한 로그인+로그아웃 구현 
+Spring Securty  + JWT 를 사용한 로그인+로그아웃 구현 
 
  
 normal 회원 등록
